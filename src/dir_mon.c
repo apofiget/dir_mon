@@ -9,7 +9,7 @@
  * Package-Requires: ()
  * Last-Updated:
  *           By:
- *     Update #: 107
+ *     Update #: 108
  * URL:
  * Doc URL:
  * Keywords:
@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
             strcpy(base_dir, optarg);
             break;
         case 'a':
-            fds_pre_alloc = atoi(optarg);
+            fds_pre_alloc = atoll(optarg);
             break;
         default:
             usage(argv[0]);
