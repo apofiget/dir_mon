@@ -9,7 +9,7 @@
  * Package-Requires: ()
  * Last-Updated:
  *           By:
- *     Update #: 316
+ *     Update #: 323
  * URL:
  * Doc URL:
  * Keywords:
@@ -74,6 +74,7 @@ static void handle_notify(int wfd, int *fd, char **names) {
 
             if (event->mask & IN_ATTRIB) printf("IN_ATTRIB: ");
             if (event->mask & IN_CREATE) printf("IN_CREATE: ");
+            if (event->mask & IN_MOVED_TO) printf("IN_MOVED_TO: ");
             if (event->mask & IN_DELETE) printf("IN_DELETE: ");
             if (event->mask & IN_DELETE_SELF) printf("IN_DELETE_SELF: ");
 
@@ -91,7 +92,7 @@ static void handle_notify(int wfd, int *fd, char **names) {
                 printf(" [directory]\n");
             else {
                 printf(" [file]\n");
-                if (exts != NULL && (event->mask & IN_CREATE) &&
+                if (exts != NULL && (event->mask & (IN_CREATE | IN_MOVED_TO)) &&
                     is_disabled_ext(event->name, strlen(event->name))) {
                     names[i] != NULL ? asprintf(&fpath, "%s/%s", names[i], event->name)
                         : asprintf(&fpath, "%s", event->name);
@@ -107,7 +108,7 @@ static int nftw_cb(const char *fpath, __attribute__((unused)) const struct stat 
                    __attribute__((unused)) struct FTW *ftwbuf) {
     if (tflag == FTW_D) {
         fds[fds_count] =
-            inotify_add_watch(ifd, fpath, IN_CREATE | IN_ATTRIB | IN_DELETE_SELF | IN_DELETE);
+            inotify_add_watch(ifd, fpath, IN_CREATE | IN_ATTRIB | IN_DELETE_SELF | IN_DELETE | IN_MOVED_TO);
         if (fds[fds_count] < 0)
             err(EXIT_FAILURE, "inotify_add_watch(), %" PRIu64 " fds already added", fds_count);
         if ((dirs[fds_count] = (char *)malloc(sizeof(char) * (strlen(fpath) + 1))) == NULL)
