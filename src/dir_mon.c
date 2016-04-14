@@ -9,7 +9,7 @@
  * Package-Requires: ()
  * Last-Updated:
  *           By:
- *     Update #: 323
+ *     Update #: 325
  * URL:
  * Doc URL:
  * Keywords:
@@ -110,7 +110,7 @@ static int nftw_cb(const char *fpath, __attribute__((unused)) const struct stat 
         fds[fds_count] =
             inotify_add_watch(ifd, fpath, IN_CREATE | IN_ATTRIB | IN_DELETE_SELF | IN_DELETE | IN_MOVED_TO);
         if (fds[fds_count] < 0)
-            err(EXIT_FAILURE, "inotify_add_watch(), %" PRIu64 " fds already added", fds_count);
+            err(EXIT_FAILURE, "inotify_add_watch(), %zu fds already added", fds_count);
         if ((dirs[fds_count] = (char *)malloc(sizeof(char) * (strlen(fpath) + 1))) == NULL)
             err(EXIT_FAILURE, "malloc()");
         strcpy(dirs[fds_count], fpath);
