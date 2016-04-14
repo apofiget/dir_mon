@@ -9,7 +9,7 @@
  * Package-Requires: ()
  * Last-Updated:
  *           By:
- *     Update #: 2
+ *     Update #: 5
  * URL:
  * Doc URL:
  * Keywords:
@@ -22,6 +22,7 @@
 
 #define _NFTW_MAX_FDS_ 64
 #define _FDS_PREALLOC 1024
+#define _COMMA ","
 
 #endif
 
