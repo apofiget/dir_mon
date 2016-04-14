@@ -9,7 +9,7 @@
  * Package-Requires: ()
  * Last-Updated:
  *           By:
- *     Update #: 1
+ *     Update #: 2
  * URL:
  * Doc URL:
  * Keywords:
@@ -20,7 +20,7 @@
 /* Code: */
 #ifndef __DIR_MON_H_
 
-#define _NFTW_MAX_FDS_ 20
+#define _NFTW_MAX_FDS_ 64
 #define _FDS_PREALLOC 1024
 
 #endif
