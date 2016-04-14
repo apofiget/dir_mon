@@ -9,7 +9,7 @@
  * Package-Requires: ()
  * Last-Updated:
  *           By:
- *     Update #: 108
+ *     Update #: 109
  * URL:
  * Doc URL:
  * Keywords:
@@ -149,7 +149,7 @@ int main(int argc, char *argv[]) {
     if (nftw(base_dir, nftw_cb, _NFTW_MAX_FDS_, FTW_PHYS | FTW_MOUNT) == -1)
         err(EXIT_FAILURE, "nftw()");
 
-    fprintf(stderr, "Watch for a %" PRIu64 " directories.\n", fds_count);
+    fprintf(stderr, "Watch for a %zu directories.\n", fds_count);
 
     ev.data.fd = ifd;
     ev.events = EPOLLIN;
